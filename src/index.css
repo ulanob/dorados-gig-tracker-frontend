@@ -1,13 +1,179 @@
-body {
+/* global */
+
+* {
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #2F3e46;
+  color:  #84A98C;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+button {
+  background-color: #354f52;
+  color: #84A98C;
+  width: 100px;
+  height: 25px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+/* Nav */
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Login / Signup  */
+
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm, .signup {
+  background-color: #354f52;
+  width: 400px;
+  text-align: center;
+}
+
+.login input {
+  width: 90%;
+}
+
+.login button {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.signupButton {
+  margin-bottom: 20px;
+}
+
+.signup {
+  padding: 20px 0 30px 0;
+  border-radius: 10px;
+}
+
+.signup input[type=radio] {
+  display: block;
+  margin: 0 auto;
+}
+
+.signup div {
+  margin-bottom: 20px;
+}
+
+
+/* Gigs */
+
+h3 {
+  margin: 30px 0;
+}
+
+.createGigButton {
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.gig {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  background-color: #354f52;
+}
+
+.gig h4 {
+  color: #cad2c5;
+}
+
+
+/* Forms */
+
+.createGig {
+  margin-top: 20px;
+}
+
+.createGig input[type=text] {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.createGig input[type=checkbox] {
+  display: inline-block;
+}
+
+.chooseMusicians {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.chooseMusicians div {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+.chooseMusicians div input {
+  margin: 0 auto;
+}
+
+.musicianCheck label {
+  display: block;
+}
+
+.chooseSuit {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chooseSuit div {
+  width: 125px;
+  height: 30px;
+  padding: 15px 0;
+}
+
+
+/* Footer */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus{
+  color: grey;
 }
