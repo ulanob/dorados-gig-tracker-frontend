@@ -66,7 +66,7 @@ export default function GigForm(props) {
       <form action="submit" id="createGig">
 
         {/* Gig Title */}
-        <label htmlFor="title">title (required): </label>
+        <label htmlFor="title">title (more than 4 characters, required): </label>
         <input name="title" type="text" id="title" onChange={(e) => handleChange(e, reqData, setReqData)} required />
 
         {/* Gig venue */}
