@@ -9,7 +9,7 @@ const handleChange = function (e, reqData, fn) {
   else {
     req[e.target.id] = e.target.value;
   }
-
+  console.log(req)
   fn(req);
 }
 

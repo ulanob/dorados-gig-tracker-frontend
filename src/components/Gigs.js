@@ -31,6 +31,7 @@ export default function Gigs(props) {
         resCopy.showAll = false;
         resCopy.update = false;
         resCopy.confirmDelete = false;
+        setShowForm(false);
         setGigs(resCopy);
       })
       .catch(err => {
@@ -119,7 +120,7 @@ export default function Gigs(props) {
       <h3>Here are the gigs, {props.user.data.user.name}:</h3>
       <div className="gigContainer">
         {
-          gigs.map(gig => {
+          gigs.length > 0 ? gigs.map(gig => {
             return (
               <div className="gig" key={gig.id}>
                 <h4>{gig.time}: {gig.title}</h4>
@@ -135,7 +136,7 @@ export default function Gigs(props) {
                 {
                   gig.showAll ?
                     <div>
-                      <p>Description: {gig.descrption}</p>
+                      <p>Description: {gig.description}</p>
                       <p>Suit: {gig.suit}</p>
                       <p>Restaurant?: {gig.restaurant ? 'Restaurant Gig' : 'Not a restaurant gig'}</p>
                       <p>Notes: {gig.notes}</p>
@@ -168,8 +169,7 @@ export default function Gigs(props) {
                 }
               </div>
             )
-          })
-        }
+          }) : <p>No gigs yet! Add a new gig with the button above</p>}
       </div>
     </div>
   )
