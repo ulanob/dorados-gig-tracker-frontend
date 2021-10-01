@@ -67,7 +67,7 @@ export default function GigForm(props) {
       <form action="submit" id="createGig">
 
         {/* Gig Title */}
-        <label htmlFor="title">title (required): </label>
+        <label htmlFor="title">title (more than 4 characters): </label>
         <input name="title" type="text" id="title" onChange={(e) => handleChange(e, reqData, setReqData)} required />
 
         {/* Gig venue */}
@@ -75,18 +75,18 @@ export default function GigForm(props) {
         <input name="venue" type="text" id="venue" onChange={(e) => handleChange(e, reqData, setReqData)} />
 
         {/* Venue Address */}
-        <label htmlFor="venueAddress">Venue Address (required): </label>
+        <label htmlFor="venueAddress">Venue Address: </label>
         <input name="venueAddress" type="text" id="venueAddress" onChange={(e) => handleChange(e, reqData, setReqData)} required />
 
         {/* Gig start time */}
         <div>
 
-          <label htmlFor="date">Date (required): </label>
+          <label htmlFor="date">Date: </label>
           <input name="date" type="date" onChange={(e) => getTime(e)} required />
         </div>
         <div>
 
-          <label htmlFor="hour">Hour (required): </label>
+          <label htmlFor="hour">Hour: </label>
           <input name="hour" id="hour" type="time" onChange={(e) => getTime(e)} required />
         </div>
 
