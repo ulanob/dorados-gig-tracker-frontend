@@ -8,11 +8,13 @@ export default function GigForm(props) {
     musicians: [],
     public: false
   });
+  const [loading, setLoading] = useState(false);
 
   const bandArr = ["angel", "boris", "mark", "jeremy", "matt", "mikeViolin", "mikeTrumpet", "nathan", "pat", "paul", "ray", "roberto"];
 
   const updateGig = (e, reqType, id) => {
     e.preventDefault();
+    setLoading(true);
 
     axios({
       method: reqType,
@@ -23,9 +25,11 @@ export default function GigForm(props) {
       }
     })
       .then(() => {
+        setLoading(false);
         props.getGigs();
       })
       .catch(err => {
+        setLoading(false);
         alert(`Error: ${err}`)
       })
   }
@@ -179,6 +183,9 @@ export default function GigForm(props) {
         <button type="reset">Reset Form</button>
         <button type='submit' onClick={(e) => updateGig(e, 'patch', props.gig.id)}>Update Gig</button>
       </form>
+      {
+        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+      }
     </div>
   )
 }

@@ -7,9 +7,11 @@ import handleChange from './../utils/handleChange';
 export default function Login(props) {
   const [reqData, setReqData] = useState({});
   const [hasAccount, setHasAccount] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = (e, obj) => {
     e.preventDefault();
+    setLoading(true);
 
     axios({
       method: 'post',
@@ -19,8 +21,10 @@ export default function Login(props) {
       .then((res) => {
         props.setUser(res.data);
         props.setLoggedIn(true);
+        setLoading(false);
       })
       .catch(err => {
+        setLoading(false);
         alert("sorry could not log you in", err)
       })
   }
@@ -49,6 +53,9 @@ export default function Login(props) {
           </div> :
 
           <Signup handleLogin={handleLogin} setReqData={setReqData} />
+      }
+      {
+        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
       }
     </div>
   );

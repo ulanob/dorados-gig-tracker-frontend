@@ -8,6 +8,7 @@ import moment from 'moment';
 export default function Gigs(props) {
   const [gigs, setGigs] = useState([])
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getGigs();
@@ -15,11 +16,13 @@ export default function Gigs(props) {
 
   // API req for ALL GIGS
   const getGigs = () => {
+    setLoading(true);
     axios({
       method: 'get',
       url: 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs'
     })
       .then(res => {
+        setLoading(false);
         const resCopy = [...res.data.data.gigs];
         resCopy.map((gig) => {
           gig.time = moment(gig.time).format('MMMM DD, YYYY h:mm A');
@@ -35,6 +38,7 @@ export default function Gigs(props) {
         setGigs(resCopy);
       })
       .catch(err => {
+        setLoading(false);
         alert('sorry, was not able to get the gigs', err);
       })
   }
@@ -81,6 +85,7 @@ export default function Gigs(props) {
 
   const deleteGig = (e, id) => {
     e.preventDefault();
+    setLoading(true);
     axios({
       method: 'delete',
       url: `https://dorados-gig-tracker.herokuapp.com/api/v1/gigs/${id}`,
@@ -88,10 +93,12 @@ export default function Gigs(props) {
         Authorization: 'Bearer ' + props.user.token
       }
     })
-      .then(res => {
+      .then(() => {
+        setLoading(false);
         getGigs();
       })
       .catch(err => {
+        setLoading(false);
         alert("sorry, was not able to delete the gig", err)
       })
   }
@@ -166,6 +173,9 @@ export default function Gigs(props) {
                       <button onClick={(e) => toggleConfirmDelete(e, gig)}>Cancel</button>
                     </div>
                     : null
+                }
+                {
+                  loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
                 }
               </div>
             )

@@ -11,21 +11,25 @@ export default function GigForm(props) {
     hour: '',
     time: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const bandArr = ["angel", "boris", "mark", "jeremy", "matt", "mikeViolin", "mikeTrumpet", "nathan", "pat", "paul", "ray", "roberto"];
   const endpoint = 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs'
 
   const createGig = (e) => {
     e.preventDefault();
+    setLoading(true)
     axios({
       method: 'post',
       url: endpoint,
       data: reqData
     })
       .then(() => {
+        setLoading(false);
         props.getGigs();
       })
       .catch(err => {
+        setLoading(false);
         alert(`Error: ${err}`)
       })
   }
@@ -184,6 +188,9 @@ export default function GigForm(props) {
         <button type="reset">Reset Form</button>
         <button type='submit' onClick={(e) => createGig(e)}>Create Gig</button>
       </form>
+      {
+        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+      }
     </div>
   )
 }

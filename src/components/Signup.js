@@ -5,9 +5,11 @@ import handleChange from './../utils/handleChange';
 
 export default function Signup(props) {
   const [reqData, setReqData] = useState({})
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios({
       method: 'post',
@@ -15,11 +17,13 @@ export default function Signup(props) {
       data: reqData
     })
       .then((res) => {
+        setLoading(false);
         if (res.status === 201) {
           props.handleLogin(e, reqData);
         }
       })
       .catch((err) => {
+        setLoading(false);
         alert("sorry could not sign up", err);
       });
   }
@@ -62,6 +66,9 @@ export default function Signup(props) {
 
         <button type="submit" onClick={(e) => handleSubmit(e, 'post', reqData, 'users/signup')}>Sign up</button>
       </form>
+      {
+        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+      }
     </div>
   );
 }
