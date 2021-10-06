@@ -175,7 +175,7 @@ export default function Gigs(props) {
                     : null
                 }
                 {
-                  loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+                  loading ? <div className="loader"><div className="lds-ripple"><div></div><div></div></div></div> : null
                 }
               </div>
             )

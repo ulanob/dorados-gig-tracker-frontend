@@ -17,9 +17,12 @@ export default function Signup(props) {
       data: reqData
     })
       .then((res) => {
+        console.log('res: ', res)
         setLoading(false);
         if (res.status === 201) {
           props.handleLogin(e, reqData);
+          window.localStorage.setItem("user", JSON.stringify(res.data));
+          // console.log("localStorage: ", JSON.parse(localStorage.getItem("user")));
         }
       })
       .catch((err) => {
@@ -67,7 +70,7 @@ export default function Signup(props) {
         <button type="submit" onClick={(e) => handleSubmit(e, 'post', reqData, 'users/signup')}>Sign up</button>
       </form>
       {
-        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+        loading ? <div className="loader"><div className="lds-ripple"><div></div><div></div></div></div> : null
       }
     </div>
   );

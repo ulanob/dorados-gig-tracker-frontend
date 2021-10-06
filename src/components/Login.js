@@ -20,6 +20,7 @@ export default function Login(props) {
     })
       .then((res) => {
         props.setUser(res.data);
+        window.localStorage.setItem("user", JSON.stringify(res.data));
         props.setLoggedIn(true);
         setLoading(false);
       })
@@ -55,7 +56,7 @@ export default function Login(props) {
           <Signup handleLogin={handleLogin} setReqData={setReqData} />
       }
       {
-        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+        loading ? <div className="loader"><div className="lds-ripple"><div></div><div></div></div></div> : null
       }
     </div>
   );

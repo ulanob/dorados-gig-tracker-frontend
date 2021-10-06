@@ -189,7 +189,7 @@ export default function GigForm(props) {
         <button type='submit' onClick={(e) => createGig(e)}>Create Gig</button>
       </form>
       {
-        loading ? <div className="loader"><div class="lds-ripple"><div></div><div></div></div></div> : null
+        loading ? <div className="loader"><div className="lds-ripple"><div></div><div></div></div></div> : null
       }
     </div>
   )
