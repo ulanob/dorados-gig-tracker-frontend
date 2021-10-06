@@ -86,10 +86,12 @@ width: 100%;
 
 
 /* Gigs */
-
 .buttonContainer {
-  display: block;
   padding-bottom: 20px;
+
+}
+.buttonContainer button{
+  display: block;
   margin: 0 auto;
 }
 
