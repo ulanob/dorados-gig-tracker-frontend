@@ -147,8 +147,8 @@ export default function GigForm(props) {
           <legend>Choose suit </legend>
 
           <div>
-            <input name="suit" type="radio" id="blackNew" value="black, new" />
-            <label htmlFor="blackNew">Black (new)</label>
+            <input name="suit" type="radio" id="black" value="black" />
+            <label htmlFor="black">Black</label>
           </div>
 
           <div>
@@ -167,13 +167,8 @@ export default function GigForm(props) {
           </div>
 
           <div>
-            <input name="suit" type="radio" id="blackOld" value="black, old" />
-            <label htmlFor="blackOld">Black (old)</label>
-          </div>
-
-          <div>
-            <input name="suit" type="radio" id="white/canada" value="black-new" />
-            <label htmlFor="whiteCanada">Canada White</label>
+            <input name="suit" type="radio" id="canada" value="canada" />
+            <label htmlFor="canada">Canada White</label>
           </div>
         </fieldset>
 

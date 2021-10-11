@@ -61,10 +61,6 @@ export default function Signup(props) {
             <label htmlFor="user">I'm a member of Los Dorados.</label>
           </div>
 
-          <div>
-            <input id="admin" type="radio" name="roleSelection" value="admin" />
-            <label htmlFor="user">Soy El Jefe!</label>
-          </div>
         </fieldset>
 
         <button type="submit" onClick={(e) => handleSubmit(e, 'post', reqData, 'users/signup')}>Sign up</button>

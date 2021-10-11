@@ -44,9 +44,8 @@ export default function App() {
             <Login setLoggedIn={setLoggedIn} setUser={setUser} />
         }
 
-
       </main>
-      <footer>Created by <a href="http://borisweb.dev">Boris</a> for Mariachi Los Dorados</footer>
+      <footer>Created by <a href="http://borisweb.dev">Boris</a> for <a href="https://www.losdoradoscanada.com/">Mariachi Los Dorados</a></footer>
     </div>
   );
 }
