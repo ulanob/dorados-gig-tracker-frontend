@@ -24,6 +24,10 @@ export default function Gigs(props) {
       .then(res => {
         setLoading(false);
         const resCopy = [...res.data.data.gigs];
+        // const filtered = resCopy.filter((gig) => {
+        //   return gig.musicians.includes(props.user.data.user.name)
+        // })
+        // console.log(filtered);
         resCopy.map((gig) => {
           gig.time = moment(gig.time).format('MMMM DD, YYYY h:mm A');
           return gig;
@@ -163,6 +167,7 @@ export default function Gigs(props) {
                       gigs={gigs}
                       getGigs={getGigs}
                       gig={gig}
+                      toggleUpdate={toggleUpdate}
                       user={props.user} /> : null
                 }
                 {

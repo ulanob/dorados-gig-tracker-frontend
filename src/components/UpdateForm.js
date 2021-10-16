@@ -5,12 +5,13 @@ import handleChange from './../utils/handleChange';
 
 export default function GigForm(props) {
   const [reqData, setReqData] = useState({
-    musicians: [],
-    public: false
+    musicians: [...props.gig.musicians],
+    public: props.gig.public,
   });
   const [loading, setLoading] = useState(false);
 
-  const bandArr = ["angel", "boris", "mark", "jeremy", "matt", "mikeViolin", "mikeTrumpet", "nathan", "pat", "paul", "ray", "roberto"];
+  const bandArr = ["Angel", "Boris", "Mark", "Jeremy", "Matt", "MikeViolin", "MikeTrumpet", "Nathan", "Pat", "Paul", "Ray", "Roberto"];
+  const suits = ["black", "red", "brown", "grey", "canada"];
 
   const updateGig = (e, reqType, id) => {
     e.preventDefault();
@@ -72,26 +73,26 @@ export default function GigForm(props) {
 
         {/* Gig Title */}
         <label htmlFor="title">title (more than 4 characters): </label>
-        <input name="title" type="text" id="title" onChange={(e) => handleChange(e, reqData, setReqData)} required />
+        <input name="title" type="text" id="title" defaultValue={props.gig.title} onChange={(e) => handleChange(e, reqData, setReqData)} />
 
         {/* Gig venue */}
         <label htmlFor="venue">venue: </label>
-        <input name="venue" type="text" id="venue" onChange={(e) => handleChange(e, reqData, setReqData)} />
+        <input name="venue" type="text" id="venue" defaultValue={props.gig.venue} onChange={(e) => handleChange(e, reqData, setReqData)} />
 
         {/* Venue Address */}
         <label htmlFor="venueAddress">Venue Address: </label>
-        <input name="venueAddress" type="text" id="venueAddress" onChange={(e) => handleChange(e, reqData, setReqData)} required />
+        <input name="venueAddress" type="text" id="venueAddress" defaultValue={props.gig.venueAddress} onChange={(e) => handleChange(e, reqData, setReqData)} />
 
         {/* Gig start time */}
         <div>
 
           <label htmlFor="date">Date: </label>
-          <input name="date" type="date" onChange={(e) => getTime(e)} required />
+          <input name="date" type="date" onChange={(e) => getTime(e)} />
         </div>
         <div>
 
           <label htmlFor="hour">Hour: </label>
-          <input name="hour" id="hour" type="time" onChange={(e) => getTime(e)} required />
+          <input name="hour" id="hour" type="time" onChange={(e) => getTime(e)} />
         </div>
 
         {/* Gig Duration */}
@@ -101,6 +102,7 @@ export default function GigForm(props) {
             name="gigDuration"
             id="gigDuration"
             form="createGig"
+            defaultValue={props.gig.gigDuration}
             onChange={(e) => handleChange(e, reqData, setReqData)}>
             <option value="" defaultValue>Provide Gig Length</option>
             <option value="0.5">30mins</option>
@@ -110,14 +112,15 @@ export default function GigForm(props) {
           </select>
         </div>
 
-
         <fieldset className="chooseMusicians">
           <legend>Choose musicians</legend>
           {
             bandArr.map((musician, i) => {
               return (
                 <div key={i} className='musicianCheck'>
-                  <input type="checkbox" id={musician} name={musician} onChange={handleFormMusicians} />
+                  <input type="checkbox" id={musician} name={musician}
+                    defaultChecked={props.gig.musicians.includes(musician) ? 'checked' : null}
+                    onChange={handleFormMusicians} />
                   <label htmlFor={musician} >{musician} </label>
                 </div>
               )
@@ -127,55 +130,43 @@ export default function GigForm(props) {
 
         <div>
           <label htmlFor="public">public: </label>
-          <input name="public" type="checkbox" id="public" onChange={(e) => handleFormCheckbox(e.target.id)} />
+          <input name="public" type="checkbox" id="public" defaultChecked={props.gig.public ? 'checked' : null} onChange={(e) => handleFormCheckbox(e.target.id)} />
         </div>
 
         <div>
           <label htmlFor="restaurant">restaurant gig? </label>
-          {/* checkbox: boolean */}
-          <input name="restaurant" type="checkbox" id="restaurant" onChange={(e) => handleFormCheckbox(e.target.id)} />
+          <input name="restaurant" type="checkbox" id="restaurant" defaultChecked={props.gig.restaurant ? 'checked' : null} onChange={(e) => handleFormCheckbox(e.target.id)} />
         </div>
 
         <div>
           <label htmlFor="description">description: </label>
-          <input name="description" type="text" id="description" onChange={(e) => handleChange(e, reqData, setReqData)} />
+          <input name="description" type="text" id="description" defaultValue={props.gig.description} onChange={(e) => handleChange(e, reqData, setReqData)} />
         </div>
 
         <fieldset
           className="chooseSuit"
           onChange={(e) => handleChange(e, reqData, setReqData)}>
           <legend>Choose suit </legend>
-
-          <div>
-            <input name="suit" type="radio" id="black" value="black" />
-            <label htmlFor="black">Black</label>
-          </div>
-
-          <div>
-            <input name="suit" type="radio" id="red" value="red" />
-            <label htmlFor="red">Red</label>
-          </div>
-
-          <div>
-            <input name="suit" type="radio" id="brown" value="brown" />
-            <label htmlFor="brown">Brown</label>
-          </div>
-
-          <div>
-            <input name="suit" type="radio" id="grey" value="grey" />
-            <label htmlFor="grey">Grey</label>
-          </div>
-
-          <div>
-            <input name="suit" type="radio" id="canada" value="canada" />
-            <label htmlFor="canada">Canada White</label>
-          </div>
+          {
+            suits.map((suit, i) => {
+              return (
+                <div>
+                  {
+                    suit === props.gig.suit ?
+                      <input key={suit + i} name="suit" type="radio" id={suit} value={suit} defaultChecked /> :
+                      <input key={suit + i} name="suit" type="radio" id={suit} value={suit} />
+                  }
+                  <label htmlFor={suit}> {suit}</label>
+                </div>
+              )
+            })
+          }
         </fieldset>
 
         <label htmlFor="notes">notes: </label>
-        <input name="notes" type="text" id="notes" onChange={(e) => handleChange(e, reqData, setReqData)} />
+        <input name="notes" type="text" id="notes" defaultValue={props.gig.notes} onChange={(e) => handleChange(e, reqData, setReqData)} />
 
-        <button type="reset">Reset Form</button>
+        <button onClick={(e) => { e.preventDefault(); props.toggleUpdate(e, props.gig) }}>Close</button>
         <button type='submit' onClick={(e) => updateGig(e, 'patch', props.gig.id)}>Update Gig</button>
       </form>
       {

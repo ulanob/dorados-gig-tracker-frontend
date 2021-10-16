@@ -13,7 +13,7 @@ export default function GigForm(props) {
   });
   const [loading, setLoading] = useState(false);
 
-  const bandArr = ["angel", "boris", "mark", "jeremy", "matt", "mikeViolin", "mikeTrumpet", "nathan", "pat", "paul", "ray", "roberto"];
+  const bandArr = ["Angel", "Boris", "Mark", "Jeremy", "Matt", "MikeViolin", "MikeTrumpet", "Nathan", "Pat", "Paul", "Ray", "Roberto"];
   const endpoint = 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs'
 
   const createGig = (e) => {
@@ -114,7 +114,7 @@ export default function GigForm(props) {
           {
             bandArr.map((musician, i) => {
               return (
-                <div key={i} className='musicianCheck'>
+                <div key={"musician" + i} className='musicianCheck'>
                   <input type="checkbox" id={musician} name={musician} onChange={handleFormMusicians} />
                   <label htmlFor={musician} >{musician} </label>
                 </div>
