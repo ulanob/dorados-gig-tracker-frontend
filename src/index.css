@@ -142,7 +142,7 @@ h3 {
 }
 
 .chooseMusicians div {
-  width: 100px;
+  width: calc(100%/7);
   height: 100px;
   text-align: center;
 }
@@ -157,6 +157,7 @@ h3 {
 .chooseSuit {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .chooseSuit div {

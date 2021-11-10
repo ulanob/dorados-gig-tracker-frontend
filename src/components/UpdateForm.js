@@ -10,7 +10,7 @@ export default function GigForm(props) {
   });
   const [loading, setLoading] = useState(false);
 
-  const bandArr = ["Angel", "Boris", "Mark", "Jeremy", "Matt", "MikeViolin", "MikeTrumpet", "Nathan", "Pat", "Paul", "Ray", "Roberto"];
+  const bandArr = ["Alex", "Angel", "Boris", "Mark", "Jeremy", "Julian", "Matt", "MikeViolin", "MikeTrumpet", "Nathan", "Pat", "Paul", "Ray", "Roberto"];
   const suits = ["black", "red", "brown", "grey", "canada"];
 
   const updateGig = (e, reqType, id) => {
