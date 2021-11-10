@@ -143,6 +143,7 @@ h3 {
 
 .chooseMusicians div {
   width: calc(100%/7);
+  min-width: 100px;
   height: 100px;
   text-align: center;
 }
