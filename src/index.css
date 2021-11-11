@@ -11,13 +11,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #2F3e46;
-  color:  #84A98C;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  background-color: burlywood;
+  color:  #82B7DC;
 }
 
 .wrapper {
@@ -27,12 +22,16 @@ code {
 }
 
 button {
-  background-color: #354f52;
-  color: #84A98C;
+  background-color: #114084;
+  color: #F1F1F1;
   width: 100px;
   height: 25px;
   margin-top: 10px;
   margin-right: 10px;
+}
+
+h3 {
+  color: black;
 }
 
 /* Nav */
@@ -45,13 +44,11 @@ nav {
 /* Login / Signup  */
 
 .login {
-
-width: 100%;
-
+  width: 100%;
 }
 
 .loginForm, .signup {
-  background-color: #354f52;
+  background-color: #114084;
   width: 400px;
   text-align: center;
   margin: 0 auto;
@@ -109,7 +106,8 @@ h3 {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
-  background-color: #354f52;
+  /* background-color: #114084; */
+  background-color: #3466AA;
 }
 
 .gig h4 {
