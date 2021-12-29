@@ -7,12 +7,20 @@ import moment from 'moment';
 
 export default function Gigs(props) {
   const [gigs, setGigs] = useState([])
+  const [display, setDisplay] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false)
+  const [months, setMonths] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState('');
 
   useEffect(() => {
     getGigs();
+    setCurrentMonth(moment(Date()).format('YYYY MM'));
   }, [])
+
+  useEffect(() => {
+    setDisplay(gigs.filter(gig => gig.month === currentMonth));
+  }, [gigs, currentMonth])
 
   // API req for ALL GIGS
   const getGigs = () => {
@@ -28,8 +36,13 @@ export default function Gigs(props) {
         //   return gig.musicians.includes(props.user.data.user.name)
         // })
         // console.log(filtered);
+        const current = [];
         resCopy.map((gig) => {
           gig.time = moment(gig.time).format('MMMM DD, YYYY h:mm A');
+          gig.month = moment(gig.time).format('YYYY MM')
+          if (!current.includes(gig.month)) {
+            current.push(gig.month);
+          }
           return gig;
         })
         resCopy.sort((a, b) => {
@@ -38,8 +51,10 @@ export default function Gigs(props) {
         resCopy.showAll = false;
         resCopy.update = false;
         resCopy.confirmDelete = false;
+        setMonths(current);
         setShowForm(false);
         setGigs(resCopy);
+        setDisplay(gigs);
       })
       .catch(err => {
         setLoading(false);
@@ -107,6 +122,11 @@ export default function Gigs(props) {
       })
   }
 
+  const setDateSelect = (id, val) => {
+    let element = document.getElementById(id);
+    element.value = val;
+  }
+
   return (
     <div className="wrapper">
       {
@@ -130,8 +150,20 @@ export default function Gigs(props) {
       }
       <h3>Here are the gigs, {props.user.data.user.name}:</h3>
       <div className="gigContainer">
+        <form action="submit" onChange={(e) => setCurrentMonth(e.target.value)}>
+          <label htmlFor="selectMonth">Select Month:</label>
+          <select name="selectMonth" id="selectMonth">
+            {
+              months.map(month => {
+                return (
+                  <option selected={month === currentMonth ? "selected" : null}>{month}</option>
+                )
+              })
+            }
+          </select>
+        </form>
         {
-          gigs.length > 0 ? gigs.map(gig => {
+          display.length > 0 ? display.map(gig => {
             return (
               <div className="gig" key={gig.id}>
                 <h4>{gig.time}: {gig.title}</h4>
@@ -186,6 +218,6 @@ export default function Gigs(props) {
             )
           }) : <p>No gigs yet! Add a new gig with the button above</p>}
       </div>
-    </div>
+    </div >
   )
 }
