@@ -12,6 +12,7 @@ export default function Gigs(props) {
   const [loading, setLoading] = useState(false)
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState('');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     getGigs();
@@ -19,8 +20,31 @@ export default function Gigs(props) {
   }, [])
 
   useEffect(() => {
+    clearQuery();
     setDisplay(gigs.filter(gig => gig.month === currentMonth));
+    
   }, [gigs, currentMonth])
+
+  useEffect(() => {
+    if(gigs && query) {
+      let filtered = [];
+      for (let i = 0; i < gigs.length; i++) {
+        const { title, notes, venue, venueAddress } = gigs[i];
+        if (title.toLowerCase().includes(query.toLowerCase())) {
+          filtered.push(gigs[i])
+        } else if (notes && notes.toLowerCase().includes(query.toLowerCase())) {
+          filtered.push(gigs[i])
+        } else if (venue && venue.toLowerCase().includes(query.toLowerCase())) {
+          filtered.push(gigs[i])
+        } else if (venueAddress.toLowerCase().includes(query.toLowerCase())) {
+          filtered.push(gigs[i])
+        }
+      }
+      setDisplay(filtered);
+    } else {
+      setDisplay(gigs.filter(gig => gig.month === currentMonth));
+    }
+  }, [gigs, query, currentMonth])
 
   // API req for ALL GIGS
   const getGigs = () => {
@@ -122,9 +146,9 @@ export default function Gigs(props) {
       })
   }
 
-  const setDateSelect = (id, val) => {
-    let element = document.getElementById(id);
-    element.value = val;
+  const clearQuery = () => {
+    document.getElementById("query-input").value= "";
+    setQuery("");
   }
 
   return (
@@ -149,19 +173,29 @@ export default function Gigs(props) {
           </div> : null
       }
       <h3>Here are the gigs, {props.user.data.user.name}:</h3>
+      <div className="query-container">
+        <input id="query-input" class ="query-input" placeholder='Search' onChange={(e) => setQuery(e.target.value)} type="text" />
+        <button className="query-clear" onClick={() => clearQuery()}>Clear</button>
+      </div>
+
       <div className="gigContainer">
-        <form action="submit" onChange={(e) => setCurrentMonth(e.target.value)}>
-          <label htmlFor="selectMonth">Select Month:</label>
-          <select name="selectMonth" id="selectMonth">
-            {
-              months.map(month => {
-                return (
-                  <option selected={month === currentMonth ? "selected" : null}>{month}</option>
-                )
-              })
-            }
-          </select>
-        </form>
+        {/* {
+          !query ?  */}
+          <form action="submit" onChange={(e) => setCurrentMonth(e.target.value)}>
+            <label htmlFor="selectMonth">Select Month:</label>
+            <select name="selectMonth" id="selectMonth">
+              {
+                months.map(month => {
+                  return (
+                    <option selected={month === currentMonth ? "selected" : null}>{month}</option>
+                  )
+                })
+              }
+            </select>
+          </form> 
+          {/* : null
+        }
+         */}
         {
           display.length > 0 ? display.map(gig => {
             return (
@@ -216,8 +250,15 @@ export default function Gigs(props) {
                 }
               </div>
             )
-          }) : <p>No gigs yet! Add a new gig with the button above</p>}
+          }) : <p className='no-gigs'>No gigs! Add a new gig with the button above or clear search</p>}
       </div>
     </div >
   )
 }
+
+
+      // const filtered = gigs.filter(gig => {
+      //   gig.title.toLowerCase().includes(query.toLowerCase()), 
+      //   gig.notes.includes(query), 
+      //   gig.venueAddress.includes(query);
+      // });
