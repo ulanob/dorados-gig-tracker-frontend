@@ -15,7 +15,7 @@ export default function Login(props) {
 
     axios({
       method: 'post',
-      url: 'https://dorados-gig-tracker.herokuapp.com/api/v1/users/login',
+      url: 'https://dorados-gig-tracker.onrender.com/api/v1/users/login',
       data: obj
     })
       .then((res) => {
@@ -62,4 +62,5 @@ export default function Login(props) {
   );
 
 }
+
 

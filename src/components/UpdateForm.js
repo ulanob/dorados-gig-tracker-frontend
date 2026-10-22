@@ -19,7 +19,7 @@ export default function GigForm(props) {
 
     axios({
       method: reqType,
-      url: 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs/' + id,
+      url: 'https://dorados-gig-tracker.onrender.com/api/v1/gigs/' + id,
       data: reqData,
       headers: {
         Authorization: 'Bearer ' + props.user.token

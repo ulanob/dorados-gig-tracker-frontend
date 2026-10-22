@@ -14,7 +14,7 @@ export default function GigForm(props) {
   const [loading, setLoading] = useState(false);
 
   const bandArr = ["Alex", "Angel", "Boris", "Mark", "Jeremy", "Julian", "Matt", "MikeViolin", "MikeTrumpet", "Nathan", "Pat", "Paul", "Ray", "Roberto"];
-  const endpoint = 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs'
+  const endpoint = 'https://dorados-gig-tracker.onrender.com/api/v1/gigs'
 
   const createGig = (e) => {
     e.preventDefault();

@@ -13,7 +13,7 @@ export default function Signup(props) {
 
     axios({
       method: 'post',
-      url: 'https://dorados-gig-tracker.herokuapp.com/api/v1/users/signup',
+      url: 'https://dorados-gig-tracker.onrender.com/api/v1/users/signup',
       data: reqData
     })
       .then((res) => {
@@ -71,3 +71,4 @@ export default function Signup(props) {
     </div>
   );
 }
+

@@ -51,7 +51,7 @@ export default function Gigs(props) {
     setLoading(true);
     axios({
       method: 'get',
-      url: 'https://dorados-gig-tracker.herokuapp.com/api/v1/gigs'
+      url: 'https://dorados-gig-tracker.onrender.com/api/v1/gigs'
     })
       .then(res => {
         setLoading(false);
@@ -131,7 +131,7 @@ export default function Gigs(props) {
     setLoading(true);
     axios({
       method: 'delete',
-      url: `https://dorados-gig-tracker.herokuapp.com/api/v1/gigs/${id}`,
+      url: `https://dorados-gig-tracker.onrender.com/api/v1/gigs/${id}`,
       headers: {
         Authorization: 'Bearer ' + props.user.token
       }
