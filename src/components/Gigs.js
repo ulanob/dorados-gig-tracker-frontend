@@ -51,7 +51,10 @@ export default function Gigs(props) {
     setLoading(true);
     axios({
       method: 'get',
-      url: 'https://dorados-gig-tracker.onrender.com/api/v1/gigs'
+      url: 'https://dorados-gig-tracker.onrender.com/api/v1/gigs',
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
     })
       .then(res => {
         setLoading(false);
