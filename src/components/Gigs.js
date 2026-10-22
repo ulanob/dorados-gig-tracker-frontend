@@ -49,6 +49,9 @@ export default function Gigs(props) {
   // API req for ALL GIGS
   const getGigs = () => {
     setLoading(true);
+
+    const user = JSON.parse(window.localStorage.getItem('user'));
+
     axios({
       method: 'get',
       url: 'https://dorados-gig-tracker.onrender.com/api/v1/gigs',
