@@ -16,8 +16,8 @@ export default function Gigs(props) {
 
   useEffect(() => {
     getGigs();
-    setCurrentMonth(moment(Date()).format('YYYY MM'));
-  }, [])
+    setCurrentMonth(moment().format('YYYY MM'));
+  }, []);
 
   useEffect(() => {
     clearQuery();
@@ -61,23 +61,28 @@ export default function Gigs(props) {
     })
       .then(res => {
         setLoading(false);
+        
         const resCopy = [...res.data.data.gigs];
         // const filtered = resCopy.filter((gig) => {
         //   return gig.musicians.includes(props.user.data.user.name)
         // })
         // console.log(filtered);
         const current = [];
+        resCopy.sort((a, b) => new Date(a.time) - new Date(b.time));
+
         resCopy.map((gig) => {
-          gig.time = moment(gig.time).format('MMMM DD, YYYY h:mm A');
-          gig.month = moment(gig.time).format('YYYY MM')
+          const date = moment(gig.time);
+
+          gig.month = date.format('YYYY MM');
+          gig.time = date.format('MMMM DD, YYYY h:mm A');
+
           if (!current.includes(gig.month)) {
             current.push(gig.month);
           }
+
           return gig;
-        })
-        resCopy.sort((a, b) => {
-          return new Date(a.time) - new Date(b.time)
-        })
+        });
+
         resCopy.showAll = false;
         resCopy.update = false;
         resCopy.confirmDelete = false;
@@ -180,7 +185,7 @@ export default function Gigs(props) {
       }
       <h3>Here are the gigs, {props.user.data.user.name}:</h3>
       <div className="query-container">
-        <input id="query-input" class ="query-input" placeholder='Search' onChange={(e) => setQuery(e.target.value)} type="text" />
+        <input id="query-input" className ="query-input" placeholder='Search' onChange={(e) => setQuery(e.target.value)} type="text" />
         <button className="query-clear" onClick={() => clearQuery()}>Clear</button>
       </div>
 
@@ -191,9 +196,9 @@ export default function Gigs(props) {
             <label htmlFor="selectMonth">Select Month:</label>
             <select name="selectMonth" id="selectMonth">
               {
-                months.map(month => {
+                months.map((month, i) => {
                   return (
-                    <option selected={month === currentMonth ? "selected" : null}>{month}</option>
+                    <option key={i} selected={month === currentMonth ? "selected" : null}>{month}</option>
                   )
                 })
               }
