@@ -1,264 +1,153 @@
-/* global */
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: burlywood;
-  color:  #000;
-}
-
-.wrapper {
-  max-width: 1200px;
-  width: 90%;
-  margin: 0 auto;
-}
-
-button {
-  background-color: #114084;
-  color: #F1F1F1;
-  width: 100px;
-  height: 25px;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-h3 {
-  color: black;
-}
-
-/* Nav */
-nav {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-/* Login / Signup  */
-
-.login {
-  width: 100%;
-}
-
-.loginForm, .signup {
-  background-color: #114084;
-  width: 400px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.login input {
-  width: 90%;
-}
-
-.login button {
-  margin-top: 20px;
-  width: 80%;
-}
-
-.signupButton {
-  margin-bottom: 20px;
-}
-
-.signup {
-  padding: 20px 0 30px 0;
-  border-radius: 10px;
-}
-
-.signup input[type=radio] {
-  display: block;
-  margin: 0 auto;
-}
-
-.signup div {
-  margin-bottom: 20px;
-}
-
-
-/* Gigs */
-.buttonContainer {
-  padding-bottom: 20px;
-
-}
-.buttonContainer button{
-  display: block;
-  margin: 0 auto;
-}
-
-.gigContainer form {
-  margin-bottom: 10px;
-  height: 40px;
-}
-
-.gigContainer select {
-  height: 40px;
-  margin-left: 10px;
-}
-
-h3 {
-  margin: 30px 0;
-}
-
-.createGigButton {
-  width: 200px;
-  display: block;
-  margin: 0 auto;
-}
-
+/* Immediate fix: restore the original blue gig cards */
 .gig {
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  /* background-color: #114084; */
+  display: flow-root;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 24px;
   background-color: #3466AA;
+  color: #ffffff;
+  border: 1px solid #24518d;
+  border-radius: 10px;
+  box-shadow: none;
+  overflow-wrap: anywhere;
+}
+
+.gig h4,
+.gig p,
+.gig span {
+  position: static;
+  color: #ffffff;
+  line-height: 1.6;
 }
 
 .gig h4 {
-  color: #cad2c5;
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-.no-gigs {
-  color: #000;
+.gig p {
+  margin: 0 0 10px;
 }
 
-/* Query search */
+.gig button {
+  position: static;
+  margin: 8px 8px 0 0;
+}
 
-.query-container {
+.gig > div {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .gig {
+    padding: 16px;
+  }
+}
+
+
+
+/* Page palette and spacing */
+:root {
+  --page-bg: #f3eee4;
+  --gig-blue: #3466aa;
+  --gig-blue-border: #264f87;
+  --ink: #242b35;
+  --soft-border: #ddd4c5;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--ink);
+}
+
+/* Main page spacing */
+.wrapper {
+  box-sizing: border-box;
+  padding-top: 28px;
+  padding-bottom: 60px;
+}
+
+/* Centered navigation */
+nav {
   display: flex;
-  width: 100%;
-  height: 30px;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;  
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 20px;
+  margin: 0 auto 24px;
+  background-color: #e8dfd0;
+  border-bottom: 1px solid var(--soft-border);
 }
-.query-input {
-  width: 90%;
-  height: inherit;
-}
-.query-clear {
-  width: 10%;
-  height: inherit;
+
+nav a,
+nav button {
   margin: 0;
 }
 
-
-
-/* Forms */
-
-.createGig {
-  margin-top: 20px;
+/* Headings and search */
+h3 {
+  margin: 24px 0 18px;
 }
 
-.createGig input[type=text] {
-  display: block;
+.query-container {
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Month selector spacing */
+.gigContainer form {
+  margin-bottom: 20px;
+}
+
+/* Blue gig cards */
+.gig {
+  box-sizing: border-box;
   width: 100%;
+  margin-bottom: 24px;
+  padding: 24px;
+  background-color: var(--gig-blue);
+  border: 1px solid var(--gig-blue-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(38, 48, 62, 0.10);
+  color: #fff;
+}
+
+.gig h4 {
+  margin-bottom: 16px;
+  color: #fff;
+  line-height: 1.45;
+}
+
+.gig p {
   margin-bottom: 10px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
-.createGig input[type=checkbox] {
-  display: inline-block;
+.gig button {
+  margin: 8px 8px 0 0;
 }
 
-.chooseMusicians {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.chooseMusicians div {
-  width: calc(100%/7);
-  min-width: 100px;
-  height: 100px;
-  text-align: center;
-}
-.chooseMusicians div input {
-  margin: 0 auto;
-}
-
-.musicianCheck label {
-  display: block;
-}
-
-.chooseSuit {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.chooseSuit div {
-  width: 125px;
-  height: 30px;
-  padding: 15px 0;
-}
-
-
-/* Footer */
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  background-color: black;
-  color: white;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover,
-footer a:focus{
-  color: grey;
-}
-
-/* Loading CSS from https://loading.io/css/ */
-
-.loader {
-  width: 100%;
-display: flex;
-justify-content: center;
-}
-
-.lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ripple div {
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-.lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
-}
-@keyframes lds-ripple {
-  0% {
-    top: 36px;
-    left: 36px;
-    width: 0;
-    height: 0;
-    opacity: 1;
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .wrapper {
+    width: 92%;
+    padding-top: 18px;
   }
-  100% {
-    top: 0px;
-    left: 0px;
-    width: 72px;
-    height: 72px;
-    opacity: 0;
+
+  nav {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .gig {
+    padding: 18px;
+    margin-bottom: 18px;
   }
 }
